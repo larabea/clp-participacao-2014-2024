@@ -101,8 +101,6 @@ def carregar_dados_anuais() -> dict[int, dict[str, int]]:
             dados_por_ano[ano]["SUG"] = contar_tipo(path, "SUG")
             print(f"{path.name}: {dados_por_ano[ano]['SUG']} sugestões")
     return dados_por_ano
-
-
 print("Carregando dados de 2014 a 2024...")
 dados_anuais = carregar_dados_anuais()
 
@@ -132,7 +130,6 @@ dy = (ymax - ymin) * 0.02
 gap = (ymax - ymin) * 0.015
 
 for x, s, r in zip(anos, sugestoes, requerimentos):
-    # posicionamento padrão
     if s > 0:
         y_s = s - dy
         if s <= 5:
@@ -144,10 +141,7 @@ for x, s, r in zip(anos, sugestoes, requerimentos):
         y_r = r + dy
         if s > 0 and abs(s - r) < (ymax - ymin) * 0.12:
             y_r = max(y_r, s + (gap + dy))
-
-    # ==== CORREÇÃO PONTUAL DOS RÓTULOS DE 2014 (trocar 31 ↔ 45) ====
     if x == 2014:
-        # mantém as posições corretas (perto dos pontos), mas troca apenas os textos
         if s > 0:
             ax.text(x, y_s, str(r), ha='center', va='top',
                     fontsize=10, color=COR_SUG, fontweight='bold',
@@ -157,8 +151,6 @@ for x, s, r in zip(anos, sugestoes, requerimentos):
                     fontsize=10, color=COR_REQ, fontweight='bold',
                     clip_on=False, zorder=5)
         continue
-    # =================================================================
-
     if s > 0:
         ax.text(x, y_s, str(s), ha='center', va='top',
                 fontsize=10, color=COR_SUG, fontweight='bold',
@@ -169,7 +161,7 @@ for x, s, r in zip(anos, sugestoes, requerimentos):
                 fontsize=10, color=COR_REQ, fontweight='bold',
                 clip_on=False, zorder=5)
 
-ax.set_title("Gráfico 2 – Evolução histórica de Sugestões (SUG) e Requerimentos (REQ), 2014–2024",
+ax.set_title("Gráfico 2 – Evolução histórica de Sugestões (SUG) e Requerimentos (REQ) Aprovados, 2014–2024",
              pad=70, fontsize=16, fontweight='bold')
 
 ax.set_xlabel("Ano")

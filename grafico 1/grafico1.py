@@ -134,7 +134,7 @@ for sig in colunas:
     bottom += vals
     handles.append(bar[0]); labels.append(NOMES_COMPLETOS.get(sig, sig))
 
-ax.set_title("Gráfico 3 — Composição partidária da CLP (2014–2024)", pad=18, fontweight="bold")
+ax.set_title("Gráfico 1 — Composição partidária da CLP (2014–2024)", pad=18, fontweight="bold")
 ax.set_xlabel("Ano"); ax.set_ylabel("Cadeiras (nº de membros)")
 ax.set_xticks(x); ax.set_xticklabels([str(a) for a in tabela.index])
 ax.yaxis.grid(True, which="major", alpha=0.4); ax.xaxis.grid(False)
@@ -157,7 +157,7 @@ fig.text(0.5, -0.06, "Fonte: Elaboração própria a partir dos dados da CLP (20
 ax.set_ylim(0, (bottom.max() if len(bottom) else 0) * 1.18)
 plt.tight_layout()
 
-for nome in ("G3_composicao_partidaria.png", "G3_composicao_partidaria.svg"):
+for nome in ("G1_composicao_partidaria.png", "G1_composicao_partidaria.svg"):
     (FIGS/nome).unlink(missing_ok=True)
     plt.savefig(FIGS/nome, bbox_inches="tight")
 plt.close()
@@ -181,4 +181,4 @@ for ano in tabela.index:
         nome = NOMES_COMPLETOS.get(sig, sig)
         print(f"{sig:<12}{int(qtd):>5}  —  {nome}")
 
-print(f"\nGráfico salvo em {FIGS}/G3_composicao_partidaria.(png|svg)")
+print(f"\nGráfico salvo em {FIGS}/G1_composicao_partidaria.(png|svg)")
